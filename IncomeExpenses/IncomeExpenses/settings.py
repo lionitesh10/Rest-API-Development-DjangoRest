@@ -53,6 +53,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'IncomeExpenses.urls'
 
+REST_FRAMEWORK={
+    "NON_FIELD_ERRORS_KEY":"Error!!"
+}
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
