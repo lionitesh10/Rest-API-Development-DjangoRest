@@ -3,7 +3,7 @@ from django.urls import reverse
 from rest_framework import generics,views
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import RegisterSerializer,EmailVerificationSerializer
+from .serializers import RegisterSerializer,EmailVerificationSerializer,LoginSerializer
 from .models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from .Util import Util
@@ -49,3 +49,10 @@ class VerifyEmail(views.APIView):
             return Response({'Error':'Token is already Expired '},status=status.HTTP_400_BAD_REQUEST)
         except jwt.exceptions.DecodeError:
             return Response({'Error':'Invalid Token'},status=status.HTTP_400_BAD_REQUEST)
+
+class LoginAPIView(generics.GenericAPIView):
+    serializer_class = LoginSerializer
+    def post(self,request):
+        serializer=self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
