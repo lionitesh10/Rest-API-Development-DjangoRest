@@ -54,7 +54,10 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'IncomeExpenses.urls'
 
 REST_FRAMEWORK={
-    "NON_FIELD_ERRORS_KEY":"Error!!"
+    "NON_FIELD_ERRORS_KEY":"Error!!",
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
 }
 
 TEMPLATES = [
@@ -124,3 +127,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '42e7c87bd22455'
+EMAIL_HOST_PASSWORD = '47801af813ad12'
+EMAIL_PORT = '2525'
